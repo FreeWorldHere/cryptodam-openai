@@ -1,0 +1,11 @@
+interface:
+  display_name: "Connect CryptoDam"
+  short_description: "Connect CryptoDam through trusted sign-in"
+  default_prompt: "Use $setup to help me connect CryptoDam and explain which read-only tools are available."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cryptodam"
+      description: "CryptoDam read-only MCP connection"
+      transport: "streamable_http"
+      url: "https://www.stuporeinvestment.com/mcp"

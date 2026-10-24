@@ -1,0 +1,11 @@
+interface:
+  display_name: "Crypto Address Safety"
+  short_description: "Check address format, networks and risk labels"
+  default_prompt: "Use $crypto-address-safety to explain CryptoDam's checks for the public address and network I provide."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cryptodam"
+      description: "CryptoDam read-only MCP connection"
+      transport: "streamable_http"
+      url: "https://www.stuporeinvestment.com/mcp"

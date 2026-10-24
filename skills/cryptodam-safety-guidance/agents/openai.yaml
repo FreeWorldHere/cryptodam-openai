@@ -1,0 +1,11 @@
+interface:
+  display_name: "CryptoDam Safety Guidance"
+  short_description: "Find CryptoDam recovery and security guidance"
+  default_prompt: "Use $cryptodam-safety-guidance to find the relevant CryptoDam safety reference for my situation."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cryptodam"
+      description: "CryptoDam read-only MCP connection"
+      transport: "streamable_http"
+      url: "https://www.stuporeinvestment.com/mcp"

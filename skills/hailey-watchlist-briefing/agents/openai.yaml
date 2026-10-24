@@ -1,0 +1,11 @@
+interface:
+  display_name: "Hailey Watchlist Briefing"
+  short_description: "Summarize your own Hailey watchlist and alerts"
+  default_prompt: "Use $hailey-watchlist-briefing to summarize my connected Hailey watchlist and relevant alerts."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cryptodam"
+      description: "CryptoDam read-only MCP connection"
+      transport: "streamable_http"
+      url: "https://www.stuporeinvestment.com/mcp"
