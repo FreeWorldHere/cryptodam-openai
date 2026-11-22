@@ -1,0 +1,11 @@
+interface:
+  display_name: "Payday Floor"
+  short_description: "Model USDC receipts in EURC"
+  default_prompt: "Use $payday-floor to model my expected receipts."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cryptodam"
+      description: "CryptoDam read-only connector"
+      transport: "streamable_http"
+      url: "https://www.stuporeinvestment.com/mcp"

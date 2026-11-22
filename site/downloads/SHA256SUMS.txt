@@ -1,1 +1,1 @@
-fe88e0200a4552c1310f7ff46eb11af28ab983db8e422deb9fc61ef0b94bf475  cryptodam-openai-plugin-0.2.3.zip
+169ea60ef40e9a9c3147a51b7a3166b051b9bc4511c2b62b4e5e62e6ed25ae83  cryptodam-openai-plugin-0.3.0.zip

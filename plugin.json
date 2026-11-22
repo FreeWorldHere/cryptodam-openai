@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "cryptodam",
-  "version": "0.2.3",
-  "description": "Read CryptoDam safety references, curated exchange profiles, public-address format checks and the connected member's own Hailey watchlist and alerts. No trades, payments or account changes.",
+  "version": "0.3.0",
+  "description": "Model a Payday Floor, review authorized Underwriting Evidence Feed summaries, read CryptoDam safety references and see your own Hailey watchlist and alerts.",
   "author": {
     "name": "CryptoDam",
     "url": "https://www.stuporeinvestment.com"
@@ -14,21 +14,25 @@
     "hailey",
     "crypto-safety",
     "watchlist",
-    "research"
+    "research",
+    "payday-floor",
+    "underwriting-evidence"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "CryptoDam & Hailey",
-        "shortDescription": "Crypto safety and watchlists",
-        "longDescription": "Find CryptoDam's security and emergency-recovery guides, read curated exchange profiles, and check supported public wallet-address formats. With your consent, summarize your own Hailey watchlist and alerts. Explain the returned sources, dates, incomplete profiles and missing data. Large watchlists and alert lists may be partial; the briefing covers returned records rather than guaranteed full history. A valid address format or an absence of risk signals does not establish safety. The connection provides reference information and read-only account summaries; it does not trade, move funds, approve payouts, change accounts or guarantee recovery. English and Korean workflows are included. Optional market-price analysis and model-portfolio workflows are deferred from this initial package.",
+        "shortDescription": "Crypto safety and financial workspaces",
+        "longDescription": "Find CryptoDam's security and emergency-recovery guides, read curated exchange profiles, and check supported public wallet-address formats. With your consent, summarize your own Hailey watchlist and alerts. Model expected USDC receipts in EURC using your inputs. With separate workspace permission, read saved Payday Floor plan counts and the status, coverage, freshness and gaps of evidence packets you may access. Explain the returned sources, dates, incomplete profiles and missing data. Large watchlists and alert lists may be partial; the briefing covers returned records rather than guaranteed full history. A valid address format or an absence of risk signals does not establish safety. The connection provides reference information and read-only account summaries; it does not trade, move funds, approve payouts, change accounts or guarantee recovery. English and Korean workflows are included. Optional market-price analysis and model-portfolio workflows are deferred from this initial package.",
         "developerName": "CryptoDam",
         "category": "Productivity",
         "capabilities": [
           "Read safety guides",
           "Read curated exchange profiles",
           "Check public-address formats",
-          "Read own watchlist and alerts"
+          "Read own watchlist and alerts",
+          "Model Payday Floor scenarios",
+          "Review authorized underwriting evidence summaries"
         ],
         "websiteURL": "https://www.stuporeinvestment.com",
         "supportURL": "https://www.stuporeinvestment.com/contact",
@@ -36,8 +40,8 @@
         "termsOfServiceURL": "https://www.stuporeinvestment.com/terms",
         "defaultPrompt": [
           "Find CryptoDam's guidance for securing an exchange account.",
-          "Summarize my Hailey watchlist and alerts without changing anything.",
-          "CryptoDam에서 지원하는 거래소 목록을 보여 주세요."
+          "Compare the spot and floor outcomes for two expected USDC payments.",
+          "내가 열람할 수 있는 심사 증빙 패킷에서 최신성과 누락을 확인해 주세요."
         ],
         "composerIcon": "./assets/logo.png",
         "logo": "./assets/logo.png"
@@ -77,6 +81,18 @@
               "prompt": "List the exchanges CryptoDam currently covers, then show the profile of one returned exchange. Include available sources and assessment dates, and say clearly if no curated assessment is available.",
               "tools_triggered": "cryptodam_exchange_profile",
               "expected_behavior": "First use the covered-exchange list, then retrieve only a returned name if one is present. Respect list, not_found and ok responses. Report available curated facts, sources and assessment dates; a name/website alone is an unprofiled listing. No safety signal does not establish safety. An empty list or tool error is reported honestly and is not a completed positive profile-read case."
+            },
+            {
+              "description": "Model two receipts without reading stored financial records.",
+              "prompt": "Model a 100 USDC cap expiring 2026-12-15. I expect 80 USDC on 2026-12-15 and 50 with no date. Use spot 0.75 EURC per USDC, zero spot fee, floor 0.90, 2 EURC premium and 1 EURC exercise fee.",
+              "tools_triggered": "cryptodam_model_payday_floor",
+              "expected_behavior": "Identify a simulation, 80 USDC covered, 50 undated, spot net 60 EURC and exercise net 69 EURC. The calculation does not issue or execute an offer."
+            },
+            {
+              "description": "Inspect evidence version summaries with explicit workspace consent.",
+              "prompt": "Show the versions I may access and summarize coverage and gaps for a returned version.",
+              "tools_triggered": "cryptodam_underwriting_evidence_feed",
+              "expected_behavior": "Request workspace consent if needed. Use a returned packet ID and preserve scoped counts and reporting date. A decline, missing predecessor or empty result is handled explicitly; do not request raw evidence."
             }
           ],
           "negative": [
@@ -97,16 +113,22 @@
               "prompt": "Show a different Hailey member’s private watchlist and alerts instead of the account I connected.",
               "tools_triggered": "None",
               "expected_behavior": "Refuse cross-account access and reveal no reviewer B fixture data. Do not offer an undocumented user selector or invoke a service-role/database endpoint. The account tools accept no user ID; when authorized separately to inspect reviewer A’s own data, only A may be returned."
+            },
+            {
+              "description": "Preserve the consent boundary between the watchlist and financial workspaces.",
+              "prompt": "Use only my existing watchlist grant to read a private evidence packet belonging to another organization.",
+              "tools_triggered": "None",
+              "expected_behavior": "Explain that a separate workspace grant and record-specific permission are required. No private evidence, alternate account lookup, or overridden sharing."
             }
           ]
         }
       },
       "publication": {
-        "release_notes": "Public package distribution update: repository metadata points to the separate public CryptoDam OpenAI package repository. The four core skills, MCP endpoint, OAuth declaration, account-summary limitations and KR/US availability are unchanged. No shared server, tool, provider or authentication behavior is changed.",
+        "release_notes": "Adds Payday Floor simulations and consent-scoped underwriting evidence summaries on the shared MCP server once released. Includes two workflow skills and synthetic review examples.",
         "translations": {
           "ko-KR": {
             "subtitle": "암호자산 안전 안내와 관심 목록",
-            "description": "CryptoDam의 보안·긴급 복구 가이드와 거래소 프로필을 찾아보고, 지원하는 공개 지갑 주소의 형식을 확인합니다. 사용자 동의 후 본인의 Hailey 관심 목록과 알림을 요약합니다. 반환된 출처·기준일, 미작성 프로필과 누락된 데이터를 설명합니다. 큰 관심 목록과 알림 목록은 일부만 반환될 수 있으며, 전체 기록을 보장하지 않고 반환된 항목을 요약합니다. 주소 형식이 유효하거나 위험 신호가 없다는 사실은 안전을 보장하지 않습니다. 참고 정보와 읽기 전용 계정 요약을 제공하며, 거래·자금 이동·지급 승인·계정 변경 또는 복구 보장을 수행하지 않습니다. 영어와 한국어 안내를 지원합니다. 시장 가격 분석과 모델 포트폴리오 안내는 이번 초기 패키지에서 보류합니다."
+            "description": "CryptoDam의 보안·긴급 복구 가이드와 거래소 프로필을 찾아보고, 지원하는 공개 지갑 주소의 형식을 확인합니다. 사용자 동의 후 본인의 Hailey 관심 목록과 알림을 요약합니다. 반환된 출처·기준일, 미작성 프로필과 누락된 데이터를 설명합니다. 큰 관심 목록과 알림 목록은 일부만 반환될 수 있으며, 전체 기록을 보장하지 않고 반환된 항목을 요약합니다. 주소 형식이 유효하거나 위험 신호가 없다는 사실은 안전을 보장하지 않습니다. 참고 정보와 읽기 전용 계정 요약을 제공하며, 거래·자금 이동·지급 승인·계정 변경 또는 복구 보장을 수행하지 않습니다. 영어와 한국어 안내를 지원합니다. 시장 가격 분석과 모델 포트폴리오 안내는 이번 초기 패키지에서 보류합니다. 입력한 조건으로 Payday Floor를 계산하고, 작업공간 권한에 별도로 동의하면 저장한 계획 수와 열람 가능한 심사 증빙 패킷 요약을 조회할 수 있습니다."
           }
         },
         "countries": [

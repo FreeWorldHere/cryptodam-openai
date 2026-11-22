@@ -21,7 +21,7 @@ activate any server capability.
   tokens, callback URLs containing codes, or API keys in chat.
 - Explain the relevant consent: `reference:read` covers CryptoDam references;
   `account:read` covers the signed-in member's own Hailey watchlist and alerts.
-  The user chooses what to authorize. A scope error requires their consent flow,
+  The optional `workspace:read` scope allows plan counts and summaries of accessible evidence packet versions. Existing grants keep their scopes. The user chooses what to authorize. A scope error requires their consent flow,
   not a different user's identity or a backend credential.
 - Rediscover tools after the user reports completing connection. For a requested
   capability, success requires its listed tool to return successfully. An error

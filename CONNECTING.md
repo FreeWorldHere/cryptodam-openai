@@ -11,6 +11,7 @@
 | Transport | Streamable HTTP |
 | Authentication declared by the prepared package | OAuth with dynamic client registration (DCR) |
 | Reference consent | `reference:read` — CryptoDam reference information |
+| Workspace consent | `workspace:read` — saved Payday Floor plan count and summaries of authorized evidence packet versions |
 | Account consent | `account:read` — the signed-in member's own Hailey watchlist and alerts |
 
 The URL is the existing service. These documents do not provision a server, change its authentication, create credentials or establish OAuth compatibility with a particular ChatGPT client. No extra identity scopes, client IDs or secret overrides are supplied here.
@@ -25,7 +26,7 @@ When a public directory listing is approved, its actual listing link can be adde
 
 1. Start the connection from the client's trusted connection controls.
 2. Complete CryptoDam sign-in and any required MFA in the trusted browser flow. Review the destination and requested permissions before continuing.
-3. Consent only to the access you want. `account:read` is for your account; it does not grant access to other members' private records.
+3. A new workspace request shows its own scope on CryptoDam’s consent screen. Consent only to the access you want. `account:read` is for your account; it does not grant access to other members' private records.
 4. Finish **Create as a plugin** where offered, locate and install the resulting plugin, then select it with **@** in your conversation. Use the equivalent controls if your client labels them differently; these controls may not be available in every account.
 5. Inspect the tools the installed connection actually makes available. A missing tool, permission error or empty list is not proof that another capability works.
 
