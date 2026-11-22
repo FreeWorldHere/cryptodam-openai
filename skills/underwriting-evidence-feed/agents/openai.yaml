@@ -1,0 +1,11 @@
+interface:
+  display_name: "Underwriting Evidence Feed"
+  short_description: "Review authorized evidence summaries"
+  default_prompt: "Use $underwriting-evidence-feed to review an authorized evidence packet."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "cryptodam"
+      description: "CryptoDam read-only connector"
+      transport: "streamable_http"
+      url: "https://www.stuporeinvestment.com/mcp"

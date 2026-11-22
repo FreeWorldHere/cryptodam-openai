@@ -1,18 +1,21 @@
 # CryptoDam & Hailey for ChatGPT
 
-Portable plugin package for a ChatGPT connection to CryptoDam's safety references and the connected member's own Hailey watchlist and alerts.
+Portable plugin package for a ChatGPT connection to CryptoDam’s Payday Floor scenarios, authorized Underwriting Evidence Feed summaries, safety references and the member’s own Hailey watchlist and alerts.
 
 **Not published in OpenAI's public directory; no public listing link exists.** This repository distributes the package and documentation; it does not establish a successful connection, runtime validation or OpenAI approval.
 
 ## Package and connection guide
 
-- [Download the core plugin ZIP](downloads/cryptodam-openai-plugin-0.2.3.zip) · [SHA-256 checksum](downloads/SHA256SUMS.txt)
+- [Download the core plugin ZIP](downloads/cryptodam-openai-plugin-0.3.0.zip) · [SHA-256 checksum](downloads/SHA256SUMS.txt)
 - [Website connection guide](https://www.stuporeinvestment.com/connect/chatgpt/)
 - [Public package source](https://github.com/FreeWorldHere/cryptodam-openai)
 
-The ZIP contains `plugin.json`, `mcp.json`, the icon and four skills. It is the plugin upload candidate; this repository's source-code ZIP includes additional documentation and is not the same artifact. Directory upload remains subject to OpenAI's requirements. Version 0.2.3 points package metadata to this public repository; it changes no shared server, tool or authentication behavior.
+The ZIP contains `plugin.json`, `mcp.json`, the icon and six skills. It is the plugin upload candidate; this repository's source-code ZIP includes additional documentation and is not the same artifact. Directory upload remains subject to OpenAI's requirements. Version 0.3.0 adds two workflows. Their tools become available when the corresponding CryptoDam server release is deployed.
 
 ## Intended core capabilities
+
+- Model USDC receipts in EURC using the rates and fees supplied by the user. Read a saved plan count with separate workspace consent.
+- Inspect coverage, freshness and gaps for accessible evidence packet versions. Record access is checked on each call.
 
 - Find CryptoDam security and emergency-recovery guides, with the returned source links.
 - Read available curated exchange profiles, distinguishing an assessed profile from a name/website-only listing.
